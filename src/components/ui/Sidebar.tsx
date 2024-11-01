@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import {
   Users,
-  BarChart2,
-  Book,
-  MessageSquare,
+  MessageSquareMore,
   Puzzle,
   Settings,
   LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ChartLine,
+  BookOpen
 } from 'lucide-react';
 import desktopLogo from './../../assets/sidebar/logo.svg'
 const Sidebar = () => {
@@ -17,16 +17,16 @@ const Sidebar = () => {
 
   const menuItems = [
     { icon: <Users size={20} />, label: 'Characters', isActive: activeIndex === 0 },
-    { icon: <BarChart2 size={20} />, label: 'Analytics', isActive: activeIndex === 1 },
-    { icon: <Book size={20} />, label: 'Knowledgebase', isActive: activeIndex === 2 },
-    { icon: <MessageSquare size={20} />, label: 'Interactions', isActive: activeIndex === 3 },
+    { icon: <ChartLine size={20} />, label: 'Analytics', isActive: activeIndex === 1 },
+    { icon: <BookOpen size={20} />, label: 'Knowledgebase', isActive: activeIndex === 2 },
+    { icon: <MessageSquareMore size={20} />, label: 'Interactions', isActive: activeIndex === 3 },
     { icon: <Puzzle size={20} />, label: 'Integrations', isActive: activeIndex === 4 },
     { icon: <Settings size={20} />, label: 'Settings', isActive: activeIndex === 5 },
   ];
 
   return (
     <div
-      className={`flex flex-col   rounded-[12px]  h-screen bg-gray-900 text-gray-300 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64 p-2'
+      className={`flex flex-col   rounded-[12px]   bg-gray-900 text-gray-300 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64 p-2'
         } relative   sideBar_custom_class`} style={{ border: "1px solid rgba(255, 255, 255, 0.16)" }}
     >
       <button
@@ -50,16 +50,23 @@ const Sidebar = () => {
             <li key={index} onClick={() => setActiveIndex(index)}>
               <a
                 href="#"
-                className={` p-3 h-[48px]  flex items-center gap-4 ${isCollapsed ? 'px-2 justify-center' : 'px-4'
-                  } py-2   ${item.isActive
-                    ? " bg-activeItemBg-0  text-white  border-[1px] border-[#FFF] rounded-[12px]"
-                    : "bg-transparent"
-                  } `}
+                className={`p-3 h-[48px] flex items-center gap-4 ${isCollapsed ? 'px-2 justify-center' : 'px-4'} py-2 ${item.isActive
+                    ? 'bg-activeItemBg-0 text-white border-[1px] border-[#FFF] rounded-[12px]'
+                    : 'bg-transparent text-[#ABADAF]'
+                  }`}
                 title={isCollapsed ? item.label : ''}
               >
                 {item.icon}
-                {!isCollapsed && <span className='text-[#FFF] font-inter text-sm font-semibold leading-6'>{item.label}</span>}
+                {!isCollapsed && (
+                  <span
+                    className={`font-inter text-sm font-semibold leading-6 ${item.isActive ? 'text-white' : 'text-gray-400'
+                      }`}
+                  >
+                    {item.label}
+                  </span>
+                )}
               </a>
+
             </li>
           ))}
         </ul>

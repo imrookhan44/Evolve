@@ -7,9 +7,11 @@ interface MainPageLayoutType {
 function MainPageLayout({ children }: MainPageLayoutType) {
   return (
     <>
-      <div className='flex gap-10'>
+      <div className='flex  gap-10 '>
         <Sidebar />
-        {children}
+        <div className='w-full py-8 px-0'>
+          {children}
+        </div>
       </div>
 
     </>
